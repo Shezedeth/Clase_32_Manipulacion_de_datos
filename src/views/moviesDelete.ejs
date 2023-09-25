@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head', {title: movie.title }) %>
+
+
+    <body class="bg-dark">
+        <figure>
+            <img class="bg-white" src="/img/logo-DH.png" alt="Logo Digital House">
+        </figure>
+        <div class="col-12 col-md-10 col-lg-12 mx-auto">
+
+            <h1 class="text-center animate__animated animate__jackInTheBox text-danger">Estás seguro de que quieres borrar la película <span class="text-warning"><%= Movie.title %></span>???</h1>
+            <p>
+            <form action="/movies/delete/<%= Movie.id %>" method="POST">
+                <br>
+
+                <p class="text-center">
+                    <button class="btn btn-danger fw-bold" type="submit">Borrar la Película</button>
+                    <a class="btn btn-secondary" href="/movies">Volver</a>
+                </p>
+
+            </form>
+            </p>
+
+        </div>
+
+        <%- include('partials/scripts') %>
+
+    </body>
+
+</html>

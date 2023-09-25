@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('partials/head', {title: 'Películas por fecha de estreno' }) %>
+
+    <body>
+        <figure>
+            <img src="/img/logo-DH.png" alt="Logo Digital House">
+        </figure>
+        <ul class="nav nav-underline">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
+        </ul>
+        
+        <h1>PELÍCULAS ORDENADAS POR FECHA</h1>
+        <!-- <ul class="list-group">
+            <% for( let i = 0; i < movies.length; i++ ) { %>
+            <li>
+                <a class="list-group-item list-group-item-action" href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
+                <%= 'RELEASE DATE: ' + movies[i].release_date %> 
+            </li>
+            <% } %>
+            
+        </ul> -->
+        
+        <table class="table table-hover">
+    
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Película</th>
+                <th scope="col">Fecha de estreno</th>
+    
+              </tr>
+            </thead>
+            <% for( let i = 0; i < movies.length; i++ ) { %>
+            <tbody>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td> <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a></td>
+                <td><%= moment(Movie.release_date).format('YYYY-MM-DD') %>  </td>
+              </tr>
+            </tbody>      
+            <% } %>
+          </table>
+        
+        <%- include('partials/scripts') %>
+</body>
+</html>

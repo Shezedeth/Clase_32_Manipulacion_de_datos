@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Top 5' }) %>
+
+    <body>
+        <figure>
+            <img src="/img/logo-DH.png" alt="Logo Digital House">
+        </figure>
+        <ul class="nav nav-underline">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
+        </ul>
+        <h1>PEÍCULAS ORDENADAS POR RATING</h1>
+        <!-- <ul>
+            <% for( let i = 0; i < movies.length; i++ ) { %>
+            <li>
+                <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
+                <%= 'RATING: ' + movies[i].rating %> 
+            </li>
+            <% } %>
+            
+        </ul> -->
+    
+        <table class="table table-hover">
+    
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Pelicula</th>
+                <th scope="col">Rating</th>
+    
+              </tr>
+            </thead>
+            <% for( let i = 0; i < movies.length; i++ ) { %>
+            <tbody>
+              <tr>
+                <td class="text-center"><%= i + 1 %></td>
+                <td> <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a></td>
+                <td><%= 'RATING: ' + movies[i].rating %> </td>
+              </tr>
+            </tbody>      
+            <% } %>
+          </table>
+        
+        <%- include('partials/scripts') %>
+</body>
+</html>
