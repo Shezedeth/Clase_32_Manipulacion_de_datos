@@ -19,7 +19,7 @@
     <ul class="list-group">
         <% for( let i = 0; i < movies.length; i++ ) { %>
         <li>
-            <a class="list-group-item list-group-item-action"href="/movies/detail/<%= movies[i].id %>"><p class="fs-3 animate__animated animate__zoomInUp"><%= movies[i].title %></p></a>
+            <a class="list-group-item list-group-item-action"href="/movies/detail/<%= movies[i].id %>"><b class="fs-6 animate__animated animate__fadeInLeft"><%= movies[i].title %></b></a>
         </li>
         <% } %>
 

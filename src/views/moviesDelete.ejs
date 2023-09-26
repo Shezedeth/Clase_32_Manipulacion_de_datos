@@ -12,13 +12,14 @@
 
             <h1 class="text-center animate__animated animate__jackInTheBox text-danger">Estás seguro de que quieres borrar la película <span class="text-warning"><%= Movie.title %></span>???</h1>
             <p>
-            <form action="/movies/delete/<%= Movie.id %>" method="POST">
+            <form class="text-center" action="/movies/delete/<%= Movie.id %>?_method=DELETE" method="POST">
                 <br>
+                <button class="btn btn-danger fw-bold" type="submit">Borrar la Película</button>
 
-                <p class="text-center">
-                    <button class="btn btn-danger fw-bold" type="submit">Borrar la Película</button>
+                
+                    
                     <a class="btn btn-secondary" href="/movies">Volver</a>
-                </p>
+                
 
             </form>
             </p>

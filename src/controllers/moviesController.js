@@ -1,6 +1,10 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const moment = require('moment');
+const {validationResult} = require('express-validator');
+
+
+
 
 //Otra forma de llamar a los modelos
 const Movies = db.Movie;
@@ -57,6 +61,12 @@ const moviesController = {
         return res.render('moviesAdd');
     },
     create: function (req, res) {
+        
+        const errors = validationResult(req)
+        
+        if(errors.isEmpty()){
+        
+        
             const {title,rating,release_date,awards,length} = req.body;
         db.Movie.create({
             title : title.trim(),
@@ -66,9 +76,31 @@ const moviesController = {
             length
         })
             .then(movie => {
-            console.log(movie);
-                return res.redirect('/movies')
+
+                return res.redirect('/moviesList',{
+                    movie,
+                    Movie : movie,
+                    moment
+                })
             })
+        
+        }else {
+        
+            
+            db.Movie.findByPk(req.params.id)
+            .then(movie => {
+                res.render('moviesAdd', {
+                    errors : errors.mapped(),
+                    old : req.body,
+                    movie,
+                    Movie : movie,
+                    moment
+                });
+                
+            });
+        }
+    
+    
     },
     edit: function(req, res) {
        // TODO
@@ -87,7 +119,11 @@ const moviesController = {
     },
     update: function (req,res) {
         // TODO
-        const {title,rating,release_date,awards,length} = req.body;
+        const errors = validationResult(req);
+        
+        if(errors.isEmpty()){
+        
+         const {title,rating,release_date,awards,length} = req.body;
         
         db.Movie.update(
         {
@@ -96,7 +132,6 @@ const moviesController = {
             awards,
             release_date,
             length,
-            genre_id
         },
         {
             where : {
@@ -107,11 +142,28 @@ const moviesController = {
             db.Movie.findByPk(req.params.id)
                 .then(movie => {
                     return res.render('moviesDetail',{
-                        movie
+                        movie,
+                        Movie : movie,
+                        moment
                     })
                 })
             
         }).catch(error => console.log(error))
+        
+        }else {
+            db.Movie.findByPk(req.params.id)
+            .then(movie => {
+                return res.render('moviesEdit', {
+                    movie,
+                    Movie : movie,
+                    moment,
+                    errors: errors.mapped(), 
+                    old: req.body
+                })
+            })
+            .catch(error => console.log(error))
+    }
+       
     },
     delete: function (req, res) {
         // TODO
@@ -134,9 +186,10 @@ const moviesController = {
                where: { id: req.params.id }
             }
         )
-        .then(() => {
-                   res.redirect('/movies');
-                })
+        .then(movie => {
+            console.log(movie);
+                return res.redirect('/movies')
+            })
         
           }
     

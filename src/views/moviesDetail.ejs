@@ -22,8 +22,8 @@
     <p>LENGTH: <%= movie.length + ' min'%> </p>
     <p>RELEASE DATE: <%= moment(Movie.release_date).format('YYYY-MM-DD') %> </p>
 
-    <a href="/movies/edit/<%= movie.id %>">Editar película</a>
-    <a href="/movies/delete/<%= movie.id %>">Eliminar película</a>
+    <a class="btn btn-secondary" href="/movies/edit/<%= movie.id %>">Editar película</a>
+    <a class="btn btn-secondary text-danger" href="/movies/delete/<%= movie.id %>">Eliminar película</a>
     
     <%- include('partials/scripts') %>
 
