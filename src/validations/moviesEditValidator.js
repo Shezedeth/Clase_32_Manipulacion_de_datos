@@ -31,8 +31,9 @@ module.exports = [
   check("release_date")
     .notEmpty()
     .withMessage("Es obligatorio")
-    .isDate()
-    .withMessage("Fomato de fecha invalido"),
+    // .isDate()
+    // .withMessage("Fomato de fecha invalido")
+    ,
   
   // ---------------length-------------
   check("length")

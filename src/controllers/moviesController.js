@@ -77,27 +77,16 @@ const moviesController = {
         })
             .then(movie => {
 
-                return res.redirect('/moviesList',{
-                    movie,
-                    Movie : movie,
-                    moment
-                })
+                return res.redirect('/movies')
             })
         
         }else {
         
-            
-            db.Movie.findByPk(req.params.id)
-            .then(movie => {
-                res.render('moviesAdd', {
+               return res.render('moviesAdd', {
                     errors : errors.mapped(),
                     old : req.body,
-                    movie,
-                    Movie : movie,
-                    moment
                 });
-                
-            });
+            
         }
     
     
