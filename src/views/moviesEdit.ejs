@@ -1,57 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <%- include('partials/head', {title:  movie.title }) %>
+<%- include('partials/head', {title: Movie.title }) %>
 
 
-<body>
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-      </figure>
-      
-      <ul class="nav nav-underline mb-3">
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/add">Agregar película</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
-      </ul>
-    
-    <div class="col-12 col-md-10 col-lg-6 mx-auto">
-        <h1 class="titulo">Película a Editar:  <%= Movie.title %></h1>
-        <section class="formulario">
-            <form action="/movies/update/<%= Movie.id %>?_method=PUT" method="POST">
-            
-                <!-- title -->
-                <label for="title">Title </label>
-                <p><input class="form-control" type="text" name="title" id="title" value="<%= Movie.title %>"></p>
-                
-                 <!-- rating -->
-                <label for="rating">Rating </label>
-                <p><input class="form-control" type="number" name="rating" id="rating" value="<%= Movie.rating %>"></p>
-                
-                 <!-- awards -->
-                <label for="awards">Awards </label>
-                <p><input class="form-control" type="number" name="awards" id="awards" value="<%= Movie.awards %>"></p>
-                
-                 <!-- release_date -->
-                <label for="release_date">Release date </label>
-                <p><input class="form-control" type="date" name="release_date" id="release_date" value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>"></p>
-                
-                 <!-- length -->
-                <label for="length">Length </label>
-                <p><input class="form-control" type="number" name="length" id="" value="<%= Movie.length %>"></p>
-                
-                <br>
-                <p> <button class="btn btn-success" type="submit">Actualizar</button>
-            
-            </form>
-        </section>
-    </div>
-    
-    
-    <%- include('partials/scripts') %>
-    
-</body>
+    <body>
+        <figure>
+            <img src="/img/logo-DH.png" alt="Logo Digital House">
+        </figure>
+
+        <ul class="nav nav-underline mb-3">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/add">Agregar película</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
+        </ul>
+
+        <div class="col-12 col-md-10 col-lg-6 mx-auto">
+            <h1 class="titulo">Película a Editar: <%= Movie.title %>
+            </h1>
+            <section class="formulario">
+                <form action="/movies/update/<%= Movie.id %>?_method=PUT" method="POST">
+
+                    <!-- title -->
+                    <label for="title">Title </label>
+                    <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>" type="text"
+                            name="title" id="title" value="<%= Movie.title %>"></p>
+                    <small class="text-danger ms-2">
+                        <%= locals.errors && (errors.title && errors.title.msg) %>
+                    </small>
+
+                    <!-- rating -->
+                    <label for="rating">Rating </label>
+                    <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>"
+                            type="number" name="rating" id="rating" value="<%= Movie.rating %>"></p>
+                    <small class="text-danger ms-2">
+                        <%= locals.errors && (errors.rating && errors.rating.msg) %>
+                    </small>
+
+                    <!-- awards -->
+                    <label for="awards">Awards </label>
+                    <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>"
+                            type="number" name="awards" id="awards" value="<%= Movie.awards %>"></p>
+                    <small class="text-danger ms-2">
+                        <%= locals.errors && (errors.awards && errors.awards.msg) %>
+                    </small>
+
+                    <!-- release_date -->
+                    <label for="release_date">Release date </label>
+                    <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>" type="date"
+                            name="release_date" id="release_date"
+                            value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>"></p>
+                    <small class="text-danger ms-2">
+                        <%= locals.errors && (errors.release_date && errors.release_date.msg) %>
+                    </small>
+
+                    <!-- length -->
+                    <label for="length">Length </label>
+                    <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>" type="number" name="length" id="" value="<%= Movie.length %>"></p>
+                    <small class="text-danger ms-2">
+                        <%= locals.errors && (errors.length && errors.length.msg) %>
+                    </small>
+
+                    <br>
+                    <p> <button class="btn btn-success" type="submit">Actualizar</button>
+
+                </form>
+            </section>
+        </div>
+
+
+        <%- include('partials/scripts') %>
+
+    </body>
 
 </html>

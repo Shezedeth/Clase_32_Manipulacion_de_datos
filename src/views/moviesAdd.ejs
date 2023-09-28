@@ -28,7 +28,7 @@
           <div class="mb-3">
             <label for="title">Title </label>
             <p><input type="text" class="form-control <%= locals.errors && (errors.title && 'is-invalid') %>" id="title"
-                placeholder="Título de la pelicula" name="title"
+                placeholder="Título de la película" name="title"
                 value="<%= locals.old && (old.title && old.title ) %>" /></p>
             <small class="text-danger ms-2">
               <%= locals.errors && (errors.title && errors.title.msg) %>
