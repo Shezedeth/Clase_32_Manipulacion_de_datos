@@ -13,12 +13,12 @@ module.exports = [
     .withMessage("Debe tener entre 4 y 20 caracteres"),
   // ---------------rating-------------
   check("rating")
-    .notEmpty()
-    .withMessage("Es obligatorio")
-    .isInt({
-      gt: 1,
-    })
-    .withMessage("Debe ser positivo"),
+    .notEmpty(),
+    // .withMessage("Es obligatorio")
+    // .isInt({
+    //   gt: 1,
+    // })
+    // .withMessage("Debe ser positivo"),
   // ---------------awards-------------
   check("awards")
     .notEmpty()
@@ -28,12 +28,12 @@ module.exports = [
     })
     .withMessage("Debe ser positivo"),
   // ---------------release_date-------------
-  check("release_date")
-    .notEmpty()
-    .withMessage("Es obligatorio")
+  // check("release_date")
+  //   .notEmpty()
+  //   .withMessage("Es obligatorio")
     // .isDate()
     // .withMessage("Fomato de fecha invalido")
-    ,
+    // ,
   
   // ---------------length-------------
   check("length")

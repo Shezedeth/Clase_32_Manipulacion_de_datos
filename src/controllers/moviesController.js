@@ -112,12 +112,16 @@ const moviesController = {
       .catch((error) => console.log(error));
 
     }else {
-
-        return res.render('moviesEdit', {
-            errors : errors.mapped(),
-            old : req.body,
-        });
-
+      // return res.send(errors)
+      db.Movie.findByPk(req.params.id).then((movie) => {
+      res.render("moviesEdit", {
+        errors: errors.mapped(),
+        old: req.body,
+        movie,
+        Movie: movie,
+        moment,
+      });
+    });
     }
   },
   delete: function (req, res) {
