@@ -24,7 +24,7 @@ li {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .body_moviesAdd {
-    background-image: url(/img/bgPelisNegro.jpg);
+    background-image: url(/img/bgPelisNegro.webp);
     background-repeat: no-repeat;
     background-size : cover;
     position: relative;
@@ -66,6 +66,7 @@ li {
     font-weight: 600;
     transition: 0.3s ease;
     transition-delay: 0.1s;
+    margin: 0px 0px 0px 17px;
   }
   .sidebar.close .logo-details .logo_name{
     transition-delay: 0s;
@@ -461,6 +462,11 @@ li {
 
 .custom__icons__slidebar img{
   width: 32px;
+}
+.custom__icons__slidebar_logo img {
+  width: 48px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 18px;
 }
 
 
