@@ -35,6 +35,7 @@ const moviesController = {
   },
   recomended: (req, res) => {
     db.Movie.findAll({
+      limit: 5,
       where: {
         rating: { [db.Sequelize.Op.gte]: 8 },
       },
@@ -45,7 +46,17 @@ const moviesController = {
   }, //Aqui debemos modificar y completar lo necesario para trabajar con el CRUD
   add: function (req, res) {
     // TODO
-    return res.render("moviesAdd");
+
+    db.Movie.findAll({
+      limit: 5,
+      where: {
+        rating: { [db.Sequelize.Op.gte]: 8 },
+      },
+      order: [["rating", "DESC"]],
+    })
+    .then((movies) => {
+    return res.render("moviesAdd",{ movies });
+  });
   },
   create: function (req, res) {
     const errors = validationResult(req);

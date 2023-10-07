@@ -1,97 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('partials/head', {title: 'Agregar película' }) %>
+<%- include('partials/head', {title: 'Agregar Película' }) %>
+
+<!-- ----------------------------------- -->
+
+<body class="body_moviesAdd">
+  <nav class="nav_codingnepal">
+    <a href="/"><img class="img_codingnepal" src="/img/logo-DH-blanco.png" alt="Logo Digital House"></a>
+  </nav>
+
+  <div class="body_codingnepal">
+
+    <!--***** sidebar menu *****-->
+
+    <body class="body_sidebarMenu">
+      <div class="sidebar close">
+        <div class="logo-details">
+        <a href="/">
+          <i class="fa-solid fa-film"></i>
+        </a>
+        <span class="logo_name">DigitalMovies</span>
+        </div>
+        <ul class="nav-links">
+        
+          <!-- movie list -->
+          <li>
+            <a href="/movies">
+              <i class="fa-solid fa-list animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+              <span class="link_name">Peliculas</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/genres">Listado de Peliculas</a></li>
+            </ul>
+          </li>
+          
+          <!-- genre list -->
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class="fa-solid fa-masks-theater animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+                <span class="link_name">Generos</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="/genres">Listado de Generos</a></li>
+              <li><a href="#">Comedia</a></li>
+              <li><a href="#">Romance</a></li>
+              <li><a href="#">Terror</a></li>
+            </ul>
+          </li>
+          
+                    
+          <!-- actors list -->
+          <li>
+            <a class="a__actorbox" href="#">
+              <i class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                <img src="/img/actor-white.svg" alt="">
+              </i>
+              <span class="link_name">Actores</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/movies/add">Listado de Actores</a></li>
+            </ul>
+          </li>
+          
+          <!-- top 5 -->
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class="fa-solid fa-ranking-star animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+                <span class="link_name">Top</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="/movies/recommended">Más votadas</a></li>
+              
+              <% for( let i = 0; i < movies.length; i++ ) { %>
+                
+                    <li> <a href="/movies/detail/<%=movies[i].id%>"><%= i + 1 %> <%= movies[i].title %> </a></li>
+
+                <% } %>
+                
+            </ul>
+          </li>
+          
+          <!-- latest movies -->
+          <li>
+            <a href="#">
+              <i class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                <img src="/img/cine.svg" alt="">
+              </i>
+              <span class="link_name">Estrenos</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/movies/new">Ultimos estrenos</a></li>
+            </ul>
+          </li>
+          
+          <!-- add movie -->
+          <li>
+            <a href="#">
+              <i class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                <img src="/img/addMovie.svg" alt="">
+              </i>
+              <span class="link_name">Agregar Peliculas</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/movies/add">Agregar</a></li>
+            </ul>
+          </li>
+            
+        </ul>
+      </div>
+      <section class="home-section">
+        <div class="home-content">
+          <i class='bx bx-menu'></i>
+          <span class="text"></span>
+        </div>
+      </section>
+      
+      <!--***** end sidebar menu *****-->
 
 
-  <body>
-    <figure>
-      <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
-
-    <ul class="nav nav-underline mb-3">
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
-    </ul>
-
-
-    <div class="col-12 col-md-10 col-lg-6 mx-auto">
-
-      <h1 class="text-center">Agregar Película</h1>
-      <section class="formulario">
-        <form action="/movies/create" method="POST">
-
-          <!-- title -->
-
-          <div class="mb-3">
-            <label for="title">Title </label>
-            <p><input type="text" class="form-control <%= locals.errors && (errors.title && 'is-invalid') %>" id="title"
-                placeholder="Título de la película" name="title"
-                value="<%= locals.old && (old.title && old.title ) %>" /></p>
+      <div class="form-wrapper_codingnepal">
+        <h2>Agregar Película</h2>
+        <form action="/movies/create" method="POST" class="form_codingnepal">
+          <div class="form-control_codingnepal">
+            <!-- title -->
+            <input type="text" class="input_codingnepal <%= locals.errors && (errors.title && 'is-invalid') %>" id="title"
+             name="title" value="<%= locals.old && (old.title && old.title ) %>"  required>
+            <label>Título de la película</label>
             <small class="text-danger ms-2">
               <%= locals.errors && (errors.title && errors.title.msg) %>
             </small>
           </div>
-
-
-
-          <!-- rating -->
-          <div class="mb-3">
-                    <label for="rating">Rating </label>
-          <p><input class="form-control <%= locals.errors && (errors.rating && 'is-invalid') %>" type="number"
-              name="rating" id="rating" placeholder="Rating" value="<%= locals.old && (old.rating && old.rating ) %>">
-          </p>
-          <small class="text-danger ms-2">
-            <%= locals.errors && (errors.rating && errors.rating.msg) %>
-          </small>
+          <div class="form-control_codingnepal">
+            <!-- rating -->
+            <input class="input_codingnepal<%= locals.errors && (errors.rating && 'is-invalid') %>" type="number"
+            name="rating" id="rating" value="<%= locals.old && (old.rating && old.rating ) %>" required>
+            <label>Rating</label>
           </div>
-
-
-          <!-- awards -->
-          <div class="mb-3">
-                    <label for="awards">Awards </label>
-          <p><input class="form-control <%= locals.errors && (errors.awards && 'is-invalid') %>" type="number"
-              name="awards" id="awards" placeholder="Premios" value="<%= locals.old && (old.awards && old.awards ) %>">
-          </p>
-          <small class="text-danger ms-2">
-            <%= locals.errors && (errors.awards && errors.awards.msg) %>
-          </small>
+          <div class="form-control_codingnepal">
+            <!-- awards -->
+            <input class="input_codingnepal<%= locals.errors && (errors.awards && 'is-invalid') %>" type="number"
+            name="awards" id="awards" value="<%= locals.old && (old.awards && old.awards ) %>" required>
+            <label>Premios</label>
           </div>
-
-
-          <!-- release_date -->
-          <div class="mb-3">
-                    <label for="release_date">Release date </label>
-          <p><input class="form-control <%= locals.errors && (errors.release_date && 'is-invalid') %>" type="date"
-              name="release_date" id="release_date"
-              value="<%= locals.old && (old.release_date && old.release_date ) %>"></p>
-          <small class="text-danger ms-2">
-            <%= locals.errors && (errors.release_date && errors.release_date.msg) %>
-          </small>
+          <div class="form-control_codingnepal">
+            <!-- release_date -->
+            <input class="input_codingnepal<%= locals.errors && (errors.release_date && 'is-invalid') %>" type="date"
+            name="release_date" id="release_date" value="<%= locals.old && (old.release_date && old.release_date ) %>">
+            <label>Estreno</label>
           </div>
-
-
-          <!-- length -->
-          <div class="mb-3">
-          <label for="length">Length </label>
-          <p><input class="form-control <%= locals.errors && (errors.length && 'is-invalid') %>" type="number"
-              name="length" id="" placeholder="Duración" value="<%= locals.old && (old.length && old.length ) %>"></p>
-          <small class="text-danger ms-2">
-            <%= locals.errors && (errors.length && errors.length.msg) %>
-          </small>
+          <div class="form-control_codingnepal">
+            <!-- length -->
+            <input class="input_codingnepal<%= locals.errors && (errors.length && 'is-invalid') %>" type="number"
+            name="length" id="" value="<%= locals.old && (old.length && old.length ) %>" required>
+            <label>Duración</label>
           </div>
           
-          <br>
-          <p> <button class="btn btn-success" type="submit">Agregar</button>
-
+          <!-- btn Agregar -->
+          <div class="button_codingnepal">
+            <button type="submit">Agregar</button>
+          </div>
+          
         </form>
-      </section>
-
-    </div>
-
-
-  </body>
+      </div>
+  </div>
+  <script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e) => {
+        let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+      });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+    });
+    
+  </script>
+</body>
+<!-- ---------------------------------- -->
+<footer>
+  <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+</footer>
 
 </html>
