@@ -2,19 +2,13 @@
 <html>
   <%- include('partials/head', {title: 'Home' }) %>
 
-  <body class="body_index">
-    <figure>
-      <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
-    <p>Bienvenidos a <%= title %></p>
-    
-    <ul class="nav nav-underline">
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/add">Agregar película</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
-      <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
-    </ul>
+  <body class="body_moviesAdd">
+    <nav class="nav_codingnepal">
+      <a href="/"><img class="img_codingnepal" src="/img/logo-DH-blanco.png" alt="Logo Digital House"></a>
+    </nav>
+  
+    <%- include('partials/slideBarMenu') %>
+
     
     <%- include('partials/scripts') %>
   </body>
